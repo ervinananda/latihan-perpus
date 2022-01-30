@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+
+    <script>
+        let edit = false;
+        let indeks = 0;
+        Reset = () => {
+            edit = false;
+            //mengosongkan form
+            document.getElementById('nama').value = "";
+            document.getElementById('buku').value = "";
+            document.getElementById('jumlah').value = "";
+            document.getElementById('tgl_pinjam').value = "";
+            document.getElementById('penerbit').value = "";
+            document.getElementById('jml_hal').value = "";
+        }
+
+
+        Simpan = () => {
+            let table = document.getElementById('tabel-peminjaman');
+            let nama = document.getElementById('nama').value;
+            let buku = document.getElementById('buku').value;
+            let jumlah = document.getElementById('jumlah').value;
+            let tgl_pinjam = document.getElementById('tgl_pinjam').value;
+            let penerbit = document.getElementById('penerbit').value;
+            let jml_hal = document.getElementById('jml_hal').value;            
+            let element = "";
+            element += "<tr>";
+            element += "<td>" + nama + "</td>";
+            element += "<td>" + buku + "</td>";
+            element += "<td>" + jumlah + "</td>";
+            element += "<td>" + tgl_pinjam + "</td>";
+            element += "<td>" + penerbit + "</td>";
+            element += "<td>" + jml_hal + "</td>";
+            element += "<td>";
+            element += '<button type="button" class="btn btn-sm btn-danger" ';
+            element += 'onclick="Hapus(this.parentElement.parentElement.rowIndex)">Hapus</button>';
+            element += "</td>";
+            element += "</tr>";
+            table.innerHTML += element;
+
+        }
+
+        // Ubah = () => {
+        //     let table = document.getElementById('tabel-peminjaman');
+        //     let nama = document.getElementById('nama').value;
+        //     let buku = document.getElementById('buku').value;
+        //     let jumlah = document.getElementById('jumlah').value;
+        //     let tgl_pinjam = document.getElementById('tgl_pinjam').value;
+        //     let penerbit = document.getElementById('penerbit').value;
+        //     let jml_hal = document.getElementById('jml_hal').value;
+        // }
+
+        Hapus = (index) => {
+            let tabel = document.getElementById('tabel-peminjaman');
+            tabel.deleteRow(index);
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="title">PEMINJAMAN BUKU</div>
+        <!-- <form> -->
+            <div class="user-details">
+                <div class="input-box">
+                    <span class="details">Nama</span>
+                    <input type="text" id="nama" placeholder="Masukkan nama peminjam" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Buku</span>
+                    <select id="buku" class="form-control">
+                    <option value="Programming RPL">Programming RPL</option>
+                    <option value="MTK">MTK</option>
+                    <option value="Bahasa Indonesia">Bahasa Indonesia</option>
+                    <option value="Bahasa Inggris">Bahasa Inggris</option>
+                  </select>
+                </div>
+                <div class="input-box">
+                    <span class="details">Jumlah</span>
+                    <input type="text" id="jumlah" placeholder="Masukkan yang dipinjam" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Tanggal Pinjam</span>
+                    <input type="date" id="tgl_pinjam" placeholder="Masukkan tanggal pinjam" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Penerbit</span>
+                    <input type="text" id="penerbit" placeholder="Masukkan nama penerbit buku" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Jumlah Halaman</span>
+                    <input type="text" id="jml_hal" placeholder="Masukkan jumlah halaman" required>
+                </div>
+            </div>
+                <div class="button">
+                <input type="submit" value="Simpan" onclick="Simpan()">
+                </div>
+                <div class="button">
+                <input type="submit" value="Reset" onclick="Reset()">
+            </div>
+        </div>
+    <br>
+    <br>
+    <div class="container-table">
+        <br>
+        <br>
+        <table id="tabel-peminjaman" class="table align-items-center mb-0">
+        <thead>
+            <tr class="text-xs font-weight-bold opacity-6 text-secondary bg-light">
+                <th>Nama</th>
+                <th>Buku</th>
+                <th>Jumlah</th>
+                <th>Tanggal Pinjam</th>
+                <th>Penerbit</th>
+                <th>Jumlah Halaman</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody class="text-xs font-weight-bold">
+        </tbody>
+    </table>
+    </div>
+</body>
+</html>
